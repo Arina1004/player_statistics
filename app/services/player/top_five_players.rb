@@ -7,7 +7,7 @@ class Player::TopFivePlayers < BaseService
     params = yield validate(MatchMetricContract,  params)
     metric= yield  find_top_five_players(params)
     players = metric.map{ |c|  {player_id: c.player.id , sum: c.sum} }
-    Success(players)
+    players
 
   end
 

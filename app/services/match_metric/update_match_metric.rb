@@ -6,7 +6,7 @@ class MatchMetric::UpdateMatchMetric < BaseService
     params = yield validate(MatchMetricContract,  params)
     match_metric = yield update_match_metric(match_metric_id, params)
 
-    Success(match_metric)
+    match_metric
   end
 
   private

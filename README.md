@@ -1,24 +1,58 @@
-# README
+# Сonsole application
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+# Installation
 
-Things you may want to cover:
+Install Bundler, если нет. Установить нужные гемы:
 
-* Ruby version
+```sh
+gem install bundler
+bundle install
+```
 
-* System dependencies
+To apply migration
 
-* Configuration
+```sh
+bundle exec rake db:migrate
+```
 
-* Database creation
+Fill the database with test data:
 
-* Database initialization
+```sh
+bundle exec rake db:seed
+```
 
-* How to run the test suite
+# How use
 
-* Services (job queues, cache servers, search engines, etc.)
+Run rails console:
 
-* Deployment instructions
+```sh
+bundle exec rails console
+```
 
-* ...
+_To assign a player metric:_
+
+```sh
+MatchMetric::CreateMatchMetric.new.call(params: {player_id: 1, metric_id: 1, match_id: 1})
+```
+_To update the metric:_
+
+```sh
+MatchMetric::UpdateMatchMetric.new.call(match_metric_id: 1, params: {player_id: 1, metric_id: 1, match_id: 1})
+```
+_To check whether a player has completed a metric for the previous 5 matches:_
+
+```sh
+ MatchMetric::CheckMatchMetric.new.call(params: {player_id:1, metric_id: 1})
+
+```
+
+_To find the top 5 players for a specific metric among all players:_
+
+```sh
+Player::TopFivePlayers.new.call(params: { metric_id: 1})
+```
+_or among the team:_
+
+```sh
+Player::TopFivePlayers.new.call(params: { metric_id: 1, team_id: 1})
+```

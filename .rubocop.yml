@@ -1,0 +1,36 @@
+AllCops:
+  TargetRubyVersion: 2.5.1
+  Exclude:
+    - 'db/**/*'
+    - 'bin/*'
+
+Layout/AccessModifierIndentation:
+  EnforcedStyle: indent
+  SupportedStyles:
+    - outdent
+    - indent
+
+Metrics/AbcSize:
+  Max: 39
+
+Metrics/BlockLength:
+  Max: 90
+
+Metrics/LineLength:
+  Max: 112
+
+Metrics/MethodLength:
+  Max: 52
+
+Style/Documentation:
+  Exclude:
+    - 'app/controllers/**/*'
+
+Style/Encoding:
+  Enabled: false
+
+Style/SymbolArray:
+  EnforcedStyle: brackets
+
+Style/AndOr:
+  EnforcedStyle: conditionals

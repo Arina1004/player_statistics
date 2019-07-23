@@ -6,7 +6,7 @@ class MatchMetric::CreateMatchMetric < BaseService
     params = yield validate(MatchMetricContract,  params)
     match_metric = yield create_match_metric(params)
 
-    Success(match_metric)
+    match_metric
   end
 
   private
