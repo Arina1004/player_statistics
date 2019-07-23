@@ -12,7 +12,7 @@ RSpec.describe MatchMetric::CheckMatchMetric do
   let(:metric) { create(:metric) }
   let(:params) { build(:valid_check_match_metric_params, player_id: player.id, metric_id: metric.id).to_h }
   let(:result) do
-    MatchMetric::CheckMatchMetric.new.call(params: params)
+    player.check_match_metric(metric.id)
   end
 
   context 'when correct params' do
