@@ -19,6 +19,7 @@ ActiveRecord::Schema.define(version: 2019_07_22_233430) do
     t.integer "player_id", null: false
     t.integer "metric_id", null: false
     t.integer "match_id", null: false
+    t.index ["match_id", "player_id", "metric_id"], name: "index_match_metrics_on_match_id_and_player_id_and_metric_id", unique: true
   end
 
   create_table "matches", force: :cascade do |t|
@@ -31,8 +32,7 @@ ActiveRecord::Schema.define(version: 2019_07_22_233430) do
   create_table "matches_teams", force: :cascade do |t|
     t.integer "match_id", null: false
     t.integer "team_id", null: false
-    t.index ["match_id"], name: "index_matches_teams_on_match_id"
-    t.index ["team_id"], name: "index_matches_teams_on_team_id"
+    t.index ["match_id", "team_id"], name: "index_matches_teams_on_match_id_and_team_id", unique: true
   end
 
   create_table "metrics", force: :cascade do |t|

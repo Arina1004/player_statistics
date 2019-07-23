@@ -6,9 +6,6 @@ class CreateMatchMetric < ActiveRecord::Migration[5.2]
       t.integer :match_id, null: false
 
     end
-
-  #   add_index :match_metrics, :player_id
-  #   add_index :match_metrics, :metric_id
-  #   add_index :match_metrics, :match_id
+    add_index :match_metrics, [:match_id ,:player_id,:metric_id], unique: true
   end
 end

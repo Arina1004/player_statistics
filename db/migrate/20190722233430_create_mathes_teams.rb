@@ -4,8 +4,6 @@ class CreateMathesTeams < ActiveRecord::Migration[5.2]
       t.integer :match_id, null: false
       t.integer :team_id, null: false
     end
-    add_index :matches_teams, :match_id
-    add_index :matches_teams, :team_id
-
+    add_index :matches_teams, [:match_id, :team_id], unique: true
   end
 end

@@ -14,9 +14,9 @@ class MatchMetric::CreateMatchMetric < BaseService
 
   class Contract < Dry::Validation::Contract
     params do
-      required(:player_id).filled
-      required(:metric_id).filled
-      required(:match_id).filled
+      required(:player).filled
+      required(:metric).filled
+      required(:match).filled
     end
   end
 
@@ -24,9 +24,9 @@ class MatchMetric::CreateMatchMetric < BaseService
     match_metric = MatchMetric.new
     match_metric.assign_attributes(
       params.slice(
-        :player_id,
-        :metric_id,
-        :match_id
+        :player,
+        :metric,
+        :match
       )
     )
     if match_metric.save

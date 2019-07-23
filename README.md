@@ -42,8 +42,7 @@ MatchMetric::UpdateMatchMetric.new.call(match_metric_id: 1, params: {player_id: 
 _To check whether a player has completed a metric for the previous 5 matches:_
 
 ```sh
- MatchMetric::CheckMatchMetric.new.call(params: {player_id:1, metric_id: 1})
-
+ Player.check_match_metric(metric_id)
 ```
 
 _To find the top 5 players for a specific metric among all players:_
@@ -55,4 +54,12 @@ _or among the team:_
 
 ```sh
 Player::TopFivePlayers.new.call(params: { metric_id: 1, team_id: 1})
+```
+
+# Tests
+
+_To run:_
+
+```sh
+ rspec
 ```

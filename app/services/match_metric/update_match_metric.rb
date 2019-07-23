@@ -1,10 +1,11 @@
+# frozen_string_literal: true
 
 class MatchMetric::UpdateMatchMetric < BaseService
   include Dry::Monads::Do.for(:_call)
 
-  def _call(match_metric_id:, params:)
-    params = yield validate(Contract,  params)
-    match_metric = yield update_match_metric(match_metric_id, params)
+  def _call(match_metric:, params:)
+    params = yield validate(Contract, params)
+    match_metric = yield update_match_metric(match_metric, params)
 
     match_metric
   end
@@ -13,20 +14,20 @@ class MatchMetric::UpdateMatchMetric < BaseService
 
   class Contract < Dry::Validation::Contract
     params do
-      optional(:player_id).filled
-      optional(:metric_id).filled
-      optional(:match_id).filled
+      optional(:player).filled
+      optional(:metric).filled
+      optional(:match).filled
     end
   end
 
-  def update_match_metric(match_metric_id,params)
-    if !match_metric_id.nil?
-      match_metric = MatchMetric.find(match_metric_id)
+  def update_match_metric(match_metric, params)
+    unless match_metric.id.nil?
+      match_metric = MatchMetric.find(match_metric)
       match_metric.assign_attributes(
         params.slice(
-          :player_id,
-          :metric_id,
-          :match_id
+          :player,
+          :metric,
+          :match
         )
       )
       if match_metric.save
