@@ -10,6 +10,8 @@ gem 'dry-initializer-rails'
 gem 'dry-matcher'
 gem 'dry-monads'
 gem 'dry-validation'
+gem "factory_bot_rails"
+gem 'faker'
 gem 'pg', '~> 0.18'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.2.2'
@@ -60,11 +62,17 @@ group :development do
 end
 
 group :test do
+  gem 'stripe-ruby-mock', '~> 2.4.0', :require => 'stripe_mock'
+  gem 'rspec-collection_matchers'
   # Adds support for Capybara system testing and selenium driver
   gem 'capybara', '>= 2.15'
   gem 'selenium-webdriver'
+  gem 'shoulda-matchers'
+  gem 'shoulda-callback-matchers', '~> 1.1.1'
+  gem 'rails-controller-testing'
   # Easy installation and use of chromedriver to run system tests with Chrome
-  gem 'chromedriver-helper'
+  gem 'webdrivers', '~> 4.0'
+  gem 'rspec-rails'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

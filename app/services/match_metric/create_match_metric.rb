@@ -1,9 +1,10 @@
+# frozen_string_literal: true
 
 class MatchMetric::CreateMatchMetric < BaseService
   include Dry::Monads::Do.for(:_call)
 
   def _call(params:)
-    params = yield validate(MatchMetricContract,  params)
+    params = yield validate(Contract, params)
     match_metric = yield create_match_metric(params)
 
     match_metric
@@ -11,7 +12,7 @@ class MatchMetric::CreateMatchMetric < BaseService
 
   private
 
-  class MatchMetricContract < Dry::Validation::Contract
+  class Contract < Dry::Validation::Contract
     params do
       required(:player_id).filled
       required(:metric_id).filled
@@ -20,7 +21,7 @@ class MatchMetric::CreateMatchMetric < BaseService
   end
 
   def create_match_metric(params)
-    match_metric = MatchMetric.new()
+    match_metric = MatchMetric.new
     match_metric.assign_attributes(
       params.slice(
         :player_id,
@@ -34,6 +35,4 @@ class MatchMetric::CreateMatchMetric < BaseService
       Failure(match_metric.errors.to_h)
     end
   end
-
-
 end

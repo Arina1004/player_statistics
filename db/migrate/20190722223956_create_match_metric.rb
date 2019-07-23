@@ -7,8 +7,8 @@ class CreateMatchMetric < ActiveRecord::Migration[5.2]
 
     end
 
-    add_index :match_metrics, :player_id
-    add_index :match_metrics, :metric_id
-    add_index :match_metrics, :match_id
+  #   add_index :match_metrics, :player_id
+  #   add_index :match_metrics, :metric_id
+  #   add_index :match_metrics, :match_id
   end
 end

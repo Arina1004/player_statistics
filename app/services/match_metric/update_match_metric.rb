@@ -3,7 +3,7 @@ class MatchMetric::UpdateMatchMetric < BaseService
   include Dry::Monads::Do.for(:_call)
 
   def _call(match_metric_id:, params:)
-    params = yield validate(MatchMetricContract,  params)
+    params = yield validate(Contract,  params)
     match_metric = yield update_match_metric(match_metric_id, params)
 
     match_metric
@@ -11,7 +11,7 @@ class MatchMetric::UpdateMatchMetric < BaseService
 
   private
 
-  class MatchMetricContract < Dry::Validation::Contract
+  class Contract < Dry::Validation::Contract
     params do
       optional(:player_id).filled
       optional(:metric_id).filled

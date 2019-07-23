@@ -16,44 +16,41 @@ ActiveRecord::Schema.define(version: 2019_07_22_233430) do
   enable_extension "plpgsql"
 
   create_table "match_metrics", force: :cascade do |t|
-    t.integer "player_id"
-    t.integer "metric_id"
-    t.integer "match_id"
-    t.index ["match_id"], name: "index_match_metrics_on_match_id"
-    t.index ["metric_id"], name: "index_match_metrics_on_metric_id"
-    t.index ["player_id"], name: "index_match_metrics_on_player_id"
+    t.integer "player_id", null: false
+    t.integer "metric_id", null: false
+    t.integer "match_id", null: false
   end
 
   create_table "matches", force: :cascade do |t|
-    t.string "name"
-    t.date "date"
+    t.string "name", null: false
+    t.date "date", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "matches_teams", force: :cascade do |t|
-    t.integer "match_id"
-    t.integer "team_id"
+    t.integer "match_id", null: false
+    t.integer "team_id", null: false
     t.index ["match_id"], name: "index_matches_teams_on_match_id"
     t.index ["team_id"], name: "index_matches_teams_on_team_id"
   end
 
   create_table "metrics", force: :cascade do |t|
-    t.string "name"
+    t.string "name", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "players", force: :cascade do |t|
-    t.string "name"
-    t.integer "team_id"
+    t.string "name", null: false
+    t.integer "team_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["team_id"], name: "index_players_on_team_id"
   end
 
   create_table "teams", force: :cascade do |t|
-    t.string "name"
+    t.string "name", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
