@@ -1,5 +1,4 @@
+# frozen_string_literal: true
+
 puts '--Metric seeds begin --'
-Metric.create!([
-  { name: 'Run for >10 km' },
-  { name: 'Made >70% successful passes' }
-])
+FactoryBot.create_list(:metric, 5)

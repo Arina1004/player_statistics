@@ -21,20 +21,18 @@ class MatchMetric::UpdateMatchMetric < BaseService
   end
 
   def update_match_metric(match_metric, params)
-    unless match_metric.id.nil?
-      match_metric = MatchMetric.find(match_metric)
-      match_metric.assign_attributes(
-        params.slice(
-          :player,
-          :metric,
-          :match
-        )
+    match_metric = MatchMetric.find(match_metric)
+    match_metric.assign_attributes(
+      params.slice(
+        :player,
+        :metric,
+        :match
       )
-      if match_metric.save
-        Success(match_metric)
-      else
-        Failure(match_metric.errors.to_h)
-      end
+    )
+    if match_metric.save
+      Success(match_metric)
+    else
+      Failure(match_metric.errors.to_h)
     end
   end
 end

@@ -1,6 +1,4 @@
+# frozen_string_literal: true
+
 puts '--Team seeds begin --'
-Team.create!([
-  { name: 'One' },
-  { name: 'Two' },
-  { name: 'Threee' }
-])
+FactoryBot.create_list(:team, 5)

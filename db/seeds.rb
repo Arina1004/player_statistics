@@ -1,6 +1,4 @@
-
 # frozen_string_literal: true
-
 
 unless Rails.env.production?
   require File.join(File.dirname(__FILE__), 'seeds/team.rb')
@@ -11,8 +9,3 @@ unless Rails.env.production?
 end
 
 Dir[File.join(__dir__, 'models', '*.rb')].each { |file| require file }
-
-
-
-
-

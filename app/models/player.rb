@@ -10,7 +10,7 @@ class Player < ActiveRecord::Base
 
   def check_match_metric(metric)
     match_id = Match.joins(:teams).where(teams: { id: team.id }).last_five.pluck(:id)
-    MatchMetric.where(player_id: id, metric_id: metric.id, match_id: match_id).any?
+    MatchMetric.where(player_id: id, metric_id: metric.id, match_id: match_id).exists?
   rescue StandardError => e
     e
   end
